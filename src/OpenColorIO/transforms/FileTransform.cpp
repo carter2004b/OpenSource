@@ -158,6 +158,11 @@ const char * FileTransform::GetFormatExtensionByIndex(int index)
     return FormatRegistry::GetInstance().getFormatExtensionByIndex(FORMAT_CAPABILITY_READ, index);
 }
 
+bool * FileTransform::IsFormatExtensionSupported(const char *ext)
+{
+    return FormatRegistry::GetInstance().isFormatExtensionSupported(const char *ext);
+}
+
 std::ostream& operator<< (std::ostream& os, const FileTransform& t)
 {
     os << "<FileTransform ";
