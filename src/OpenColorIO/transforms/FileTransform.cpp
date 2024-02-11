@@ -522,6 +522,23 @@ const char * FormatRegistry::getFormatExtensionByIndex(int capability, int index
     return "";
 }
 
+bool FormatRegistry::isFormatExtensionSupported(const char *ext) noexcept {
+//StringUtils::Lower(ext)
+    char *extension = const_cast<char *>(ext);
+    if (extension[0] == '.') {
+        // remove first character if it is a '.'
+        extension++;
+    }
+    extension = StringUtils::Lower(extension) // now case-insensitive
+    int i = 0;
+    while (GetFormatExtensionByIndex(i) != "") {
+        // search all format extensions and compare
+        if (GetFormatExtensionByIndex(i) == extension)
+            return true;
+        i++;
+    } // no matching extensions found
+    return false;
+}
 ///////////////////////////////////////////////////////////////////////////
 
 FileFormat::~FileFormat()
